@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GenzStream - Live TV</title>
+
+  <!-- Video.js CSS -->
+  <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      color: white;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    header { background-color: rgba(0,0,0,0.25); padding: 20px; width: 100%; box-sizing: border-box; font-size: 24px; }
+    .player-container { max-width: 900px; width: 100%; padding: 20px; box-sizing: border-box; }
+    .info { margin-top: 12px; color: #fff; opacity: 0.95; font-size: 14px; }
+    a.button {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 10px 18px;
+      background: white;
+      color: #764ba2;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header>🌟 GenzStream - Live TV 🌟</header>
+
+  <div class="player-container">
+    <video
+      id="live-player"
+      class="video-js vjs-default-skin"
+      controls
+      preload="auto"
+      width="900"
+      height="506"
+      data-setup='{}'>
+      <!-- HLS stream source (produced by nginx-rtmp hls) -->
+      <source src="/hls/stream.m3u8" type="application/x-mpegURL" />
+    </video>
+
+    <div class="info">
+      Stream flow: OBS (RTMP) → nginx-rtmp (HLS) → Browser player. Use OBS to stream to rtmp://YOUR_SERVER:1935/live with stream key "stream".
+      <br/>
+      If you're running the provided docker-compose, open this page on port 8080 (e.g. http://YOUR_SERVER:8080).
+      <br/>
+      <a class="button" href="https://obsproject.com/" target="_blank" rel="noopener">Download OBS</a>
+    </div>
+  </div>
+
+  <!-- video.js + hls support -->
+  <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.1/hls.min.js"></script>
+  <script>
+    (function () {
+      var player = videojs('live-player');
+      var video = document.getElementById('live-player');
+      var src = '/hls/stream.m3u8';
+
+      if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        player.src({ src: src, type: 'application/x-mpegURL' });
+      } else if (Hls.isSupported()) {
+        var hls = new Hls();
+        hls.loadSource(src);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+          player.play().catch(()=>{});
+        });
+      } else {
+        player.innerHTML = 'This browser does not support HLS playback.';
+      }
+    })();
+  </script>
+</body>
+</html>
