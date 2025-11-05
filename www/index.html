@@ -65,13 +65,8 @@
     </div>
   </div>
 
-  <!-- Fixed bottom nav -->
-  <nav class="bottom-nav" role="navigation" aria-label="Bottom navigation">
-    <button class="nav-btn" data-view="events"><i class="fa fa-broadcast-tower"></i><span>Live Events</span></button>
-    <button class="nav-btn active" data-view="categories"><i class="fa fa-th-large"></i><span>Categories</span></button>
-    <button class="nav-btn" data-view="highlights"><i class="fa fa-play-circle"></i><span>Highlights</span></button>
-  </nav>
-
+  <!-- Include Hls.js for HLS playback where native is not supported -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.1/hls.min.js"></script>
   <script src="/app.js"></script>
 </body>
 </html>

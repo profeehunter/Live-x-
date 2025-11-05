@@ -1,0 +1,40 @@
+{
+  "categories": [
+    {
+      "id": "sports",
+      "title": "Sports",
+      "img": "https://via.placeholder.com/200x200.png?text=Sports",
+      "channels": [
+        {"id":"crichd","name":"CRICHD","thumb":"https://via.placeholder.com/200x200.png?text=CRICHD","stream":"/hls/crichd.m3u8","sub":"Live sports online"},
+        {"id":"fancode","name":"FANCode","thumb":"https://via.placeholder.com/200x200.png?text=Fancode","stream":"/hls/fancode.m3u8","sub":"Live cricket & highlights"},
+        {"id":"yupptv","name":"YUPPTV","thumb":"https://via.placeholder.com/200x200.png?text=YUPPTV","stream":"/hls/yupptv.m3u8","sub":"International sports"}
+      ]
+    },
+    {
+      "id": "countries",
+      "title": "Countries",
+      "img": "https://via.placeholder.com/200x200.png?text=Countries",
+      "channels": [
+        {"id":"india","name":"India","thumb":"https://via.placeholder.com/200x200.png?text=India","stream":"/hls/india.m3u8","sub":"Indian channels"},
+        {"id":"uk","name":"UK","thumb":"https://via.placeholder.com/200x200.png?text=UK","stream":"/hls/uk.m3u8","sub":"United Kingdom channels"},
+        {"id":"usa","name":"United States","thumb":"https://via.placeholder.com/200x200.png?text=USA","stream":"/hls/usa.m3u8","sub":"US channels"}
+      ]
+    },
+    {
+      "id": "news",
+      "title": "News",
+      "img": "https://via.placeholder.com/200x200.png?text=News",
+      "channels": [
+        {"id":"genz-news","name":"Genz News","thumb":"https://via.placeholder.com/200x200.png?text=Genz+News","stream":"/hls/genznews.m3u8","sub":"24/7 headlines"}
+      ]
+    },
+    {
+      "id": "kids",
+      "title": "Kids",
+      "img": "https://via.placeholder.com/200x200.png?text=Kids",
+      "channels": [
+        {"id":"kids-1","name":"Kids Channel","thumb":"https://via.placeholder.com/200x200.png?text=Kids","stream":"/hls/kids.m3u8","sub":"Children shows"}
+      ]
+    }
+  ]
+}
