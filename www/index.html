@@ -3,72 +3,75 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GenzStream — Live TV</title>
+  <title>PLAYFy TV — Categories</title>
+
+  <!-- Styles and icons -->
   <link rel="stylesheet" href="/styles.css" />
-  <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
 </head>
 <body>
-  <header class="site-header">
-    <div class="brand">
-      <img src="https://raw.githubusercontent.com/profeehunter/Live-x-/live-stream-setup/GenzStream" alt="GenzStream" class="logo" />
-      <span class="title">GenzStream</span>
+  <header class="mobile-header">
+    <button class="hamburger" aria-label="menu"><i class="fa fa-bars"></i></button>
+    <div class="app-title">PLAYFy TV</div>
+    <div class="header-actions">
+      <button class="fav" title="Favorites"><i class="fa fa-heart"></i></button>
+      <button class="refresh" title="Refresh"><i class="fa fa-sync"></i></button>
+      <button class="search" title="Search"><i class="fa fa-search"></i></button>
     </div>
-    <nav class="main-nav">
-      <a href="#">Home</a>
-      <a href="#channels">Channels</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#about">About</a>
-    </nav>
   </header>
 
-  <main class="container">
-    <aside class="sidebar" id="channels">
-      <h3>Live Channels</h3>
-      <ul id="channel-list" class="channel-list">
-        <!-- JS will populate -->
-      </ul>
-      <div class="cta">
-        <button id="open-obs" onclick="window.open('https://obsproject.com/', '_blank')">Stream with OBS</button>
-      </div>
-    </aside>
+  <div class="marquee">PLAYFy TV 1.3 Released! Uninstall old version & install new</div>
 
-    <section class="player-area">
-      <div class="player-box">
-        <video id="live-player" class="video-js vjs-default-skin" controls preload="auto" width="960" height="540">
-          <source src="/hls/stream.m3u8" type="application/x-mpegURL" />
-        </video>
-        <div class="meta">
-          <div class="program">
-            <h2 id="channel-title">Main Channel</h2>
-            <p id="program-info">Live — Enjoy the stream</p>
-          </div>
-          <div class="actions">
-            <button id="share-btn"><i class="fa fa-share-alt"></i> Share</button>
-            <button id="quality-btn"><i class="fa fa-sliders"></i> Quality</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule" id="schedule">
-        <h3>Schedule</h3>
-        <ul id="schedule-list"></ul>
-      </div>
+  <main class="mobile-main">
+    <!-- Filter row (icons) -->
+    <section class="filters" role="toolbar" aria-label="Category filters">
+      <div class="filter active" data-filter="all"><i class="fa fa-th-large"></i><span>All</span></div>
+      <div class="filter" data-filter="cricket"><i class="fa fa-bat-ball"></i><span>Cricket</span></div>
+      <div class="filter" data-filter="football"><i class="fa fa-futbol"></i><span>Football</span></div>
+      <div class="filter" data-filter="kids"><i class="fa fa-child"></i><span>Kids</span></div>
+      <div class="filter" data-filter="news"><i class="fa fa-newspaper"></i><span>News</span></div>
     </section>
 
-    <aside class="chat" id="chat">
-      <h3>Chat</h3>
-      <div class="chat-placeholder">Live chat will appear here. You can embed a chat iframe (Twitch, StreamYard, or a custom chat) or integrate a WebSocket chat service.</div>
-    </aside>
+    <!-- Categories grid -->
+    <section id="categories-view" class="categories" aria-live="polite">
+      <!-- populated by JS -->
+    </section>
+
+    <!-- Channels view (shown after selecting a category) -->
+    <section id="channels-view" class="channels" hidden>
+      <div class="channels-header">
+        <button id="back-to-cats" class="back-btn"><i class="fa fa-arrow-left"></i></button>
+        <h2 id="channels-title">Category</h2>
+      </div>
+      <div id="channels-list" class="channels-grid"></div>
+    </section>
+
+    <!-- Events / schedule list -->
+    <section id="events-view" class="events" hidden>
+      <!-- populated by JS -->
+    </section>
   </main>
 
-  <footer class="site-footer">
-    <div>© <span id="year"></span> GenzStream • Built for professional live TV</div>
-    <div class="social"><a href="#"><i class="fab fa-twitter"></i></a> <a href="#"><i class="fab fa-facebook"></i></a></div>
-  </footer>
+  <!-- Player modal (hidden until a channel is opened) -->
+  <div id="player-modal" class="player-modal" hidden aria-hidden="true">
+    <div class="player-inner">
+      <button id="close-player" class="close-player" aria-label="close"><i class="fa fa-times"></i></button>
+      <video id="modal-video" controls playsinline></video>
+      <div class="player-meta">
+        <div id="modal-channel-title" class="modal-channel-title">Channel</div>
+        <div id="modal-channel-sub" class="modal-channel-sub">Live</div>
+      </div>
+    </div>
+  </div>
 
-  <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.1/hls.min.js"></script>
+  <!-- Fixed bottom nav -->
+  <nav class="bottom-nav" role="navigation" aria-label="Bottom navigation">
+    <button class="nav-btn" data-view="events"><i class="fa fa-broadcast-tower"></i><span>Live Events</span></button>
+    <button class="nav-btn active" data-view="categories"><i class="fa fa-th-large"></i><span>Categories</span></button>
+    <button class="nav-btn" data-view="highlights"><i class="fa fa-play-circle"></i><span>Highlights</span></button>
+  </nav>
+
   <script src="/app.js"></script>
 </body>
 </html>
