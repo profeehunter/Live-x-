@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -31,11 +31,26 @@
     button:hover {
       background: #ddd;
     }
+    a.viewer-link {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 10px 16px;
+      background: white;
+      color: #764ba2;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
   <header>🌟 Welcome to My AI Website 🌟</header>
   <p>This is my first website created with AI!</p>
+
+  <p>
+    <a class="viewer-link" href="/" target="_blank" rel="noopener">Open Live TV Viewer</a>
+  </p>
+
   <button onclick="alert('Hello from AI Website!')">Click Me</button>
 </body>
 </html>

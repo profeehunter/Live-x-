@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PLAYFy TV — Categories</title>
+
+  <!-- Styles and icons -->
+  <link rel="stylesheet" href="/styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+</head>
+<body>
+  <header class="mobile-header">
+    <button class="hamburger" aria-label="menu"><i class="fa fa-bars"></i></button>
+    <div class="app-title">PLAYFy TV</div>
+    <div class="header-actions">
+      <button class="fav" title="Favorites"><i class="fa fa-heart"></i></button>
+      <button class="refresh" title="Refresh"><i class="fa fa-sync"></i></button>
+      <button class="search" title="Search"><i class="fa fa-search"></i></button>
+    </div>
+  </header>
+
+  <div class="marquee">PLAYFy TV 1.3 Released! Uninstall old version & install new</div>
+
+  <main class="mobile-main">
+    <!-- Filter row (icons) -->
+    <section class="filters" role="toolbar" aria-label="Category filters">
+      <div class="filter active" data-filter="all"><i class="fa fa-th-large"></i><span>All</span></div>
+      <div class="filter" data-filter="cricket"><i class="fa fa-bat-ball"></i><span>Cricket</span></div>
+      <div class="filter" data-filter="football"><i class="fa fa-futbol"></i><span>Football</span></div>
+      <div class="filter" data-filter="kids"><i class="fa fa-child"></i><span>Kids</span></div>
+      <div class="filter" data-filter="news"><i class="fa fa-newspaper"></i><span>News</span></div>
+    </section>
+
+    <!-- Categories grid -->
+    <section id="categories-view" class="categories" aria-live="polite">
+      <!-- populated by JS -->
+    </section>
+
+    <!-- Channels view (shown after selecting a category) -->
+    <section id="channels-view" class="channels" hidden>
+      <div class="channels-header">
+        <button id="back-to-cats" class="back-btn"><i class="fa fa-arrow-left"></i></button>
+        <h2 id="channels-title">Category</h2>
+      </div>
+      <div id="channels-list" class="channels-grid"></div>
+    </section>
+
+    <!-- Events / schedule list -->
+    <section id="events-view" class="events" hidden>
+      <!-- populated by JS -->
+    </section>
+  </main>
+
+  <!-- Player modal (hidden until a channel is opened) -->
+  <div id="player-modal" class="player-modal" hidden aria-hidden="true">
+    <div class="player-inner">
+      <button id="close-player" class="close-player" aria-label="close"><i class="fa fa-times"></i></button>
+      <video id="modal-video" controls playsinline></video>
+      <div class="player-meta">
+        <div id="modal-channel-title" class="modal-channel-title">Channel</div>
+        <div id="modal-channel-sub" class="modal-channel-sub">Live</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include Hls.js for HLS playback where native is not supported -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.1/hls.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
